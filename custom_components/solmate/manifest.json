@@ -1,0 +1,12 @@
+{
+  "domain": "solmate",
+  "name": "Solmate",
+  "codeowners": ["@jonogould"],
+  "config_flow": true,
+  "documentation": "https://github.com/jonogould/homeassistant-solmate",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/jonogould/homeassistant-solmate/issues",
+  "requirements": [],
+  "version": "1.1.2"
+}

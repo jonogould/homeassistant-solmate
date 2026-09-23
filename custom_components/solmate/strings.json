@@ -1,0 +1,85 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Select Solar Inverter Provider",
+        "description": "Choose your solar inverter platform. Solmate connects directly to your inverter's cloud API.",
+        "data": {
+          "provider": "Inverter Platform"
+        }
+      },
+      "credentials": {
+        "title": "Inverter Account Login",
+        "description": "Enter the email and password you use to log in to your inverter app (e.g. Sunsynk Connect).",
+        "data": {
+          "email": "Account Email / Username",
+          "password": "Password",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the inverter cloud server. Check internet connection.",
+      "invalid_auth": "Invalid email or password. Please verify your credentials.",
+      "unknown": "Unexpected error occurred during authentication."
+    },
+    "abort": {
+      "already_configured": "This inverter account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Solmate Options",
+        "description": "Configure telemetry update frequency and battery parameters.",
+        "data": {
+          "scan_interval": "Telemetry Update Interval (seconds, min 30)",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery_soc": {
+        "name": "Battery State of Charge"
+      },
+      "pv_power": {
+        "name": "Solar Generation"
+      },
+      "batt_power": {
+        "name": "Battery Power Flow"
+      },
+      "grid_power": {
+        "name": "Grid Power"
+      },
+      "load_power": {
+        "name": "Home Load Consumption"
+      },
+      "daily_pv_yield": {
+        "name": "Daily Solar Yield"
+      },
+      "daily_grid_import": {
+        "name": "Daily Grid Import"
+      },
+      "daily_grid_export": {
+        "name": "Daily Grid Export"
+      },
+      "daily_batt_charge": {
+        "name": "Daily Battery Charge"
+      },
+      "daily_batt_discharge": {
+        "name": "Daily Battery Discharge"
+      },
+      "daily_load": {
+        "name": "Daily Home Consumption"
+      },
+      "solar_independence": {
+        "name": "Solar Independence Score"
+      },
+      "battery_status": {
+        "name": "Battery Status & ETA"
+      }
+    }
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solmate Home Assistant Card Preview</title>
+  <style>
+    body {
+      background-color: #0f1117;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 28px;
+      margin: 0 0 8px 0;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      color: #94a3b8;
+      margin: 0;
+      font-size: 14px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 400px));
+      gap: 24px;
+      width: 100%;
+      max-width: 1240px;
+      justify-content: center;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .controls button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+    .controls button:hover {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: #FFD700;
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>⚡️ Solmate Home Assistant Card Preview</h1>
+    <p>Live Lovelace Custom Card with 3D Torus Gauge & 4-Node Energy Flow</p>
+  </div>
+
+  <div class="controls">
+    <button onclick="setScenario('day_charging')">☀️ Daytime Charging</button>
+    <button onclick="setScenario('evening_discharging')">🌙 Evening Discharging</button>
+    <button onclick="setScenario('full_exporting')">⚡️ Battery Full & Exporting</button>
+    <button onclick="setScenario('low_grid_import')">🔌 Low Battery Grid Import</button>
+  </div>
+
+  <div class="dashboard-grid">
+    <!-- Card 1: Electric Gold (Glass Dark) -->
+    <div>
+      <solmate-card id="card1"></solmate-card>
+    </div>
+
+    <!-- Card 2: Cyber Emerald (Obsidian OLED) -->
+    <div>
+      <solmate-card id="card2"></solmate-card>
+    </div>
+
+    <!-- Card 3: Plasma Cyan (Pure Light) -->
+    <div>
+      <solmate-card id="card3"></solmate-card>
+    </div>
+  </div>
+
+  <!-- Load Card Web Component -->
+  <script src="custom_components/solmate/www/solmate-card.js"></script>
+
+  <script>
+    // Mock Home Assistant states object
+    let mockStates = {
+      'sensor.solmate_battery_soc': { state: '84' },
+      'sensor.solmate_solar_power': { state: '3450' },
+      'sensor.solmate_battery_power': { state: '-2100' }, // charging
+      'sensor.solmate_grid_power': { state: '-450' }, // exporting
+      'sensor.solmate_load_power': { state: '900' },
+      'sensor.solmate_daily_pv_yield': { state: '15.6' },
+      'sensor.solmate_solar_independence': { state: '94' },
+      'sensor.solmate_battery_status': { state: 'Full in 45m' }
+    };
+
+    const mockHass = {
+      states: mockStates
+    };
+
+    // Configure Cards
+    window.addEventListener('DOMContentLoaded', () => {
+      const card1 = document.getElementById('card1');
+      card1.setConfig({
+        title: 'Solmate',
+        theme: 'electricGold',
+        appearance: 'glassDark',
+        show_flow: true,
+        show_stats: true
+      });
+      card1.hass = mockHass;
+
+      const card2 = document.getElementById('card2');
+      card2.setConfig({
+        title: 'Solmate',
+        theme: 'cyberEmerald',
+        appearance: 'obsidianOLED',
+        show_flow: true,
+        show_stats: true
+      });
+      card2.hass = mockHass;
+
+      const card3 = document.getElementById('card3');
+      card3.setConfig({
+        title: 'Solmate',
+        theme: 'plasmaCyan',
+        appearance: 'pureLight',
+        show_flow: true,
+        show_stats: true
+      });
+      card3.hass = mockHass;
+    });
+
+    function setScenario(type) {
+      if (type === 'day_charging') {
+        mockStates['sensor.solmate_battery_soc'].state = '62';
+        mockStates['sensor.solmate_solar_power'].state = '4200';
+        mockStates['sensor.solmate_battery_power'].state = '-3100';
+        mockStates['sensor.solmate_grid_power'].state = '-250';
+        mockStates['sensor.solmate_load_power'].state = '850';
+        mockStates['sensor.solmate_daily_pv_yield'].state = '18.2';
+        mockStates['sensor.solmate_solar_independence'].state = '98';
+        mockStates['sensor.solmate_battery_status'].state = 'Full in 1h 10m';
+      } else if (type === 'evening_discharging') {
+        mockStates['sensor.solmate_battery_soc'].state = '76';
+        mockStates['sensor.solmate_solar_power'].state = '0';
+        mockStates['sensor.solmate_battery_power'].state = '1250';
+        mockStates['sensor.solmate_grid_power'].state = '25';
+        mockStates['sensor.solmate_load_power'].state = '1200';
+        mockStates['sensor.solmate_daily_pv_yield'].state = '24.1';
+        mockStates['sensor.solmate_solar_independence'].state = '91';
+        mockStates['sensor.solmate_battery_status'].state = '5h 15m left';
+      } else if (type === 'full_exporting') {
+        mockStates['sensor.solmate_battery_soc'].state = '100';
+        mockStates['sensor.solmate_solar_power'].state = '4800';
+        mockStates['sensor.solmate_battery_power'].state = '0';
+        mockStates['sensor.solmate_grid_power'].state = '-3950';
+        mockStates['sensor.solmate_load_power'].state = '850';
+        mockStates['sensor.solmate_daily_pv_yield'].state = '28.5';
+        mockStates['sensor.solmate_solar_independence'].state = '100';
+        mockStates['sensor.solmate_battery_status'].state = 'Fully Charged';
+      } else if (type === 'low_grid_import') {
+        mockStates['sensor.solmate_battery_soc'].state = '14';
+        mockStates['sensor.solmate_solar_power'].state = '0';
+        mockStates['sensor.solmate_battery_power'].state = '0';
+        mockStates['sensor.solmate_grid_power'].state = '2100';
+        mockStates['sensor.solmate_load_power'].state = '2100';
+        mockStates['sensor.solmate_daily_pv_yield'].state = '6.4';
+        mockStates['sensor.solmate_solar_independence'].state = '45';
+        mockStates['sensor.solmate_battery_status'].state = 'Reserve Cutoff (10%)';
+      }
+
+      const updateHass = { states: { ...mockStates } };
+      document.getElementById('card1').hass = updateHass;
+      document.getElementById('card2').hass = updateHass;
+      document.getElementById('card3').hass = updateHass;
+    }
+  </script>
+</body>
+</html>

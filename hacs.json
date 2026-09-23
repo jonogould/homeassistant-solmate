@@ -1,0 +1,6 @@
+{
+  "name": "Solmate Solar & Battery Integration",
+  "render_readme": true,
+  "filename": "solmate-card.js",
+  "homeassistant": "2024.1.0"
+}
