@@ -4,7 +4,7 @@ from typing import Final
 
 DOMAIN: Final = "solmate"
 NAME: Final = "Solmate"
-VERSION: Final = "1.1.2"
+VERSION: Final = "1.1.3"
 
 # Gateway Configuration
 DEFAULT_GATEWAY_URL: Final = "https://api.jonogould.com/solmate"

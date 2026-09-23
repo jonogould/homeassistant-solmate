@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.3] - 2026-09-23
+
+### 🔧 Fixes & Improvements
+- **Automatic Lovelace Resource Registration**: The custom card is now automatically registered in Home Assistant's Lovelace resources upon integration setup.
+- **Dual Static Path & Fallback**: Registered both directory and file endpoints, and added automated sync to `/config/www/solmate-card.js` for seamless `/local/solmate-card.js` fallback.
+- **Enhanced Troubleshooting**: Clear guide for addressing "Custom element doesn't exist: solmate-card" and browser caching behavior.
+
+---
+
 ## [1.1.2] - 2026-09-23
 
 ### ✨ Initial Public Release

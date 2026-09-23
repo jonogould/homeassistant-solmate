@@ -111,10 +111,15 @@ Your solar inverter will appear in your Device Registry with all 13 real-time se
 
 ## 🎨 Lovelace Dashboard Card
 
-### Add the Resource (If not already loaded)
-Go to **Settings** ➔ **Dashboards** ➔ **three dots (⋮)** ➔ **Resources** ➔ **Add Resource**:
-- **URL**: `/solmate/solmate-card.js`
-- **Resource type**: `JavaScript Module`
+### Add the Resource
+
+> [!NOTE]
+> **Automatic Registration**: Starting with v1.1.3, when you add the Solmate integration under **Settings ➔ Devices & Services**, the card resource `/solmate/solmate-card.js` is **automatically registered** for you!
+>
+> If you are setting up manually or using the card standalone with another inverter:
+> Go to **Settings** ➔ **Dashboards** ➔ **three dots (⋮)** ➔ **Resources** ➔ **Add Resource**:
+> - **URL**: `/solmate/solmate-card.js` (or `/local/solmate-card.js`)
+> - **Resource type**: `JavaScript Module`
 
 ---
 
@@ -157,6 +162,28 @@ solar_independence: sensor.solar_self_sufficiency_pct
 ```
 
 ---
+
+## ❓ Troubleshooting: "Custom element doesn't exist: solmate-card"
+
+If you see this error when adding the card, follow these quick steps:
+
+1. **Did you add the integration under Devices & Services?**
+   - In Home Assistant, an integration's backend code only runs **after** you add it via **Settings ➔ Devices & Services ➔ Add Integration ➔ Solmate**.
+   - If you downloaded via HACS but haven't added the integration yet, the `/solmate/solmate-card.js` web endpoint is not active yet! Add the integration (you can choose **Demo Simulator** if you just want to test).
+
+2. **Did you restart Home Assistant?**
+   - After installing any new integration in HACS, a Home Assistant restart is required (**Settings ➔ System ➔ Restart**).
+
+3. **Hard-refresh your browser cache!**
+   - Browsers aggressively cache failed JavaScript module loads. Even once the server is ready, the browser won't retry loading until you force refresh:
+     - **Mac**: `Cmd` + `Shift` + `R`
+     - **Windows / Linux**: `Ctrl` + `F5`
+     - **HA Mobile App**: Pull down from the top to refresh, or clear app cache in Settings.
+
+4. **Verify the script loads directly:**
+   - In your browser, open `http://<YOUR_HA_IP>:8123/solmate/solmate-card.js`.
+   - If it displays the JavaScript code, the server is running properly. Hard-refresh your dashboard and the card will appear!
+
 
 ## 📊 Exposed Sensor Entities
 
