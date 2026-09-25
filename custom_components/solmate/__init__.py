@@ -151,8 +151,11 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         coordinator = hass.data[DOMAIN].pop(entry.entry_id, None)
-        if coordinator and coordinator.client:
-            await coordinator.client.close()
+        if coordinator:
+            if hasattr(coordinator, "async_close"):
+                await coordinator.async_close()
+            elif getattr(coordinator, "client", None):
+                await coordinator.client.close()
 
     return unload_ok
 

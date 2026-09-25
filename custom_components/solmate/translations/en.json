@@ -3,28 +3,102 @@
     "step": {
       "user": {
         "title": "Select Solar Inverter Provider",
-        "description": "Choose your solar inverter platform. Solmate connects directly to your inverter's cloud API.",
+        "description": "Choose your solar inverter platform. Solmate connects directly to your inverter's cloud or local API.",
         "data": {
           "provider": "Inverter Platform"
         }
       },
       "credentials": {
-        "title": "Inverter Account Login",
-        "description": "Enter the email and password you use to log in to your inverter app (e.g. Sunsynk Connect).",
+        "title": "Sunsynk / Deye Cloud Login",
+        "description": "Enter the email and password you use to log in to Sunsynk Connect or Solmate app.",
         "data": {
-          "email": "Account Email / Username",
+          "email": "Account Email",
           "password": "Password",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "solaredge": {
+        "title": "SolarEdge Monitoring Credentials",
+        "description": "Enter your SolarEdge Site ID and Monitoring API Key.",
+        "data": {
+          "site_id": "Site ID",
+          "api_key": "API Key",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "victron": {
+        "title": "Victron Energy VRM Credentials",
+        "description": "Enter your Victron VRM Installation / Site ID and Personal Access Token.",
+        "data": {
+          "site_id": "Installation / Site ID",
+          "token": "VRM Access Token",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "tesla": {
+        "title": "Tesla Powerwall Local Gateway",
+        "description": "Enter the local IP address or hostname of your Tesla Powerwall Gateway.",
+        "data": {
+          "gateway_ip": "Powerwall IP / Host",
+          "password": "Customer Password (Optional)",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "foxess": {
+        "title": "FoxESS Cloud Open API",
+        "description": "Enter your FoxESS Device Serial Number and Open API Key.",
+        "data": {
+          "device_sn": "Device Serial Number (SN)",
+          "api_key": "Open API Key",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "goodwe": {
+        "title": "GoodWe SEMS Portal Login",
+        "description": "Enter your GoodWe SEMS Portal account email and password.",
+        "data": {
+          "account": "SEMS Account Email",
+          "password": "Password",
+          "station_id": "Power Station ID (Optional)",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "growatt": {
+        "title": "Growatt ShineServer Login",
+        "description": "Enter your Growatt ShineServer username and password.",
+        "data": {
+          "username": "Username / Account",
+          "password": "Password",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "enphase": {
+        "title": "Enphase IQ / Envoy Gateway",
+        "description": "Enter your local Envoy Gateway IP address or hostname.",
+        "data": {
+          "gateway_ip": "Envoy IP / Host",
+          "token": "Envoy Access Token (Optional)",
+          "battery_capacity_kwh": "Total Battery Capacity (kWh)"
+        }
+      },
+      "solarman": {
+        "title": "Solarman Open API Credentials",
+        "description": "Enter your Solarman Developer App ID, App Secret, and Station ID.",
+        "data": {
+          "app_id": "App ID",
+          "app_secret": "App Secret",
+          "station_id": "Station ID",
           "battery_capacity_kwh": "Total Battery Capacity (kWh)"
         }
       }
     },
     "error": {
-      "cannot_connect": "Failed to connect to the inverter cloud server. Check internet connection.",
-      "invalid_auth": "Invalid email or password. Please verify your credentials.",
+      "cannot_connect": "Failed to connect to the inverter cloud/local server. Check network connection.",
+      "invalid_auth": "Invalid credentials. Please verify your login details or API key.",
       "unknown": "Unexpected error occurred during authentication."
     },
     "abort": {
-      "already_configured": "This inverter account is already configured."
+      "already_configured": "This inverter is already configured."
     }
   },
   "options": {

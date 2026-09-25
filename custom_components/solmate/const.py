@@ -4,7 +4,7 @@ from typing import Final
 
 DOMAIN: Final = "solmate"
 NAME: Final = "Solmate"
-VERSION: Final = "1.1.3"
+VERSION: Final = "1.2.0"
 
 # Gateway Configuration
 DEFAULT_GATEWAY_URL: Final = "https://api.jonogould.com/solmate"
@@ -19,12 +19,40 @@ CONF_BATTERY_CAPACITY_KWH: Final = "battery_capacity_kwh"
 
 # Supported Providers
 PROVIDER_SUNSYNK: Final = "sunsynk"
+PROVIDER_SOLAREDGE: Final = "solaredge"
+PROVIDER_VICTRON: Final = "victron"
+PROVIDER_TESLA: Final = "tesla"
+PROVIDER_FOXESS: Final = "foxess"
+PROVIDER_GOODWE: Final = "goodwe"
+PROVIDER_GROWATT: Final = "growatt"
+PROVIDER_ENPHASE: Final = "enphase"
+PROVIDER_SOLARMAN: Final = "solarman"
 PROVIDER_DEMO: Final = "demo"
 
 PROVIDER_NAMES = {
     PROVIDER_SUNSYNK: "Sunsynk / Deye Cloud",
+    PROVIDER_SOLAREDGE: "SolarEdge",
+    PROVIDER_VICTRON: "Victron Energy (VRM)",
+    PROVIDER_TESLA: "Tesla Powerwall",
+    PROVIDER_FOXESS: "FoxESS Cloud",
+    PROVIDER_GOODWE: "GoodWe (SEMS)",
+    PROVIDER_GROWATT: "Growatt",
+    PROVIDER_ENPHASE: "Enphase (IQ / Envoy)",
+    PROVIDER_SOLARMAN: "Solarman / Sol-Ark",
     PROVIDER_DEMO: "Demo Simulator",
 }
+
+# Credential keys
+CONF_SITE_ID: Final = "site_id"
+CONF_API_KEY: Final = "api_key"
+CONF_TOKEN: Final = "token"
+CONF_GATEWAY_IP: Final = "gateway_ip"
+CONF_DEVICE_SN: Final = "device_sn"
+CONF_ACCOUNT: Final = "account"
+CONF_USERNAME: Final = "username"
+CONF_STATION_ID: Final = "station_id"
+CONF_APP_ID: Final = "app_id"
+CONF_APP_SECRET: Final = "app_secret"
 
 # Defaults
 DEFAULT_SCAN_INTERVAL: Final = 60  # seconds (safe for Sunsynk cloud rate limits)

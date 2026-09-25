@@ -94,15 +94,23 @@ If you do not use HACS, you can install the integration manually:
 
 ## ⚙️ Inverter Configuration
 
-Once installed, connect your inverter account through the standard Home Assistant UI:
+Once installed, connect your inverter through the standard Home Assistant UI:
 
 1. Go to **Settings** ➔ **Devices & Services**.
 2. Click **Add Integration** in the bottom right corner.
 3. Search for **Solmate** and select it.
 4. Select your provider:
-   - **Sunsynk / Deye Cloud**: Enter the **Email** and **Password** you use for the Sunsynk Connect or Solmate mobile app.
-   - **Demo Simulator**: Instant simulated solar and battery telemetry to test themes and cards without hardware.
-5. Set your **Battery Capacity** (default: `10.0` kWh) for accurate Time-to-Full and Time-to-Empty estimations.
+   - ☀️ **Sunsynk / Deye Cloud**: Enter the **Email** and **Password** from Sunsynk Connect or the Solmate app.
+   - ⚡️ **SolarEdge**: Enter your **Site ID** and **Monitoring API Key**.
+   - 🔵 **Victron Energy**: Enter your **VRM Installation ID** and **Personal Access Token**.
+   - 🔋 **Tesla Powerwall**: Enter your local **Gateway IP / Host** (e.g. `192.168.1.100`) and optional password.
+   - ✨ **FoxESS Cloud**: Enter your **Device Serial Number (SN)** and **Open API Key**.
+   - 🔌 **GoodWe (SEMS)**: Enter your **SEMS Account Email**, **Password**, and optional **Station ID**.
+   - 🌿 **Growatt**: Enter your **ShineServer Username** and **Password**.
+   - 🟧 **Enphase (IQ / Envoy)**: Enter your local **Envoy IP** and optional **Token**.
+   - 📡 **Solarman / Sol-Ark**: Enter your **Developer App ID**, **App Secret**, and **Station ID**.
+   - 🎮 **Demo Simulator**: Instant simulated solar and battery telemetry to test themes and cards without hardware.
+5. Set your **Battery Capacity** (default: `10.0` kWh, or `13.5` kWh for Powerwall) for dynamic Time-to-Full and Time-to-Empty projections.
 6. Click **Submit**!
 
 Your solar inverter will appear in your Device Registry with all 13 real-time sensors automatically configured.
@@ -208,10 +216,16 @@ The integration creates 13 first-class Home Assistant sensors grouped under the 
 ---
 
 ## 💡 Supported Inverters
-
 - ☀️ **Sunsynk & Deye**: Direct cloud integration with real-time power flow telemetry and battery status.
-- 🎮 **Demo Simulator**: Instant realistic day/night solar generation, battery storage, and grid routing simulation for dashboard testing.
-- 🔌 **Extensible Provider Architecture**: Designed to easily add SolarEdge, Victron VRM, Solarman, GoodWe, and FoxESS in upcoming updates.
+- ⚡️ **SolarEdge**: Monitoring API integration with live power flow and daily solar yield.
+- 🔵 **Victron Energy**: VRM Cloud REST API integration with comprehensive diagnostics and real-time battery status.
+- 🔋 **Tesla Powerwall**: Direct local gateway communication (`/api/system_status/soe` and `/api/meters/aggregates`).
+- ✨ **FoxESS**: Cloud Open API query for real-time solar, battery charge/discharge, grid import/export, and load.
+- 🔌 **GoodWe (SEMS)**: SEMS Portal API integration with live power station telemetry.
+- 🌿 **Growatt**: ShineServer real-time monitoring and daily generation tracking.
+- 🟧 **Enphase (IQ / Envoy)**: Local Envoy gateway telemetry (`/ivp/livedata/status` & `/api/v1/production`).
+- 📡 **Solarman / Sol-Ark**: Open API integration with real-time station metrics.
+- 🎮 **Demo Simulator**: Instant realistic day/night solar generation, battery storage, and grid routing simulation for testing.
 
 ---
 

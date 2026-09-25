@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-09-25
+
+### 🚀 Full Solar Inverter Ecosystem Support
+- **Added Support for All 10 Providers**:
+  - ☀️ **Sunsynk / Deye Cloud**: Direct cloud API telemetry with RSA PKCS#1 v1.5 auth.
+  - ⚡️ **SolarEdge**: Monitoring API integration with power flow and daily solar yield.
+  - 🔵 **Victron Energy**: VRM Cloud REST API with live diagnostics and battery state.
+  - 🔋 **Tesla Powerwall**: Direct local gateway communication (`/api/system_status/soe` and `/api/meters/aggregates`).
+  - ✨ **FoxESS**: Cloud Open API query for real-time solar, battery, grid, and household consumption.
+  - 🔌 **GoodWe (SEMS)**: SEMS Portal API integration with live power station telemetry.
+  - 🌿 **Growatt**: ShineServer real-time monitoring and daily generation tracking.
+  - 🟧 **Enphase (IQ / Envoy)**: Local Envoy gateway telemetry (`/ivp/livedata/status` & `/api/v1/production`).
+  - 📡 **Solarman / Sol-Ark**: Open API integration with real-time station metrics.
+  - 🎮 **Demo Simulator**: Instant realistic day/night solar generation, battery storage, and grid routing simulation.
+- **Provider Architecture**: Clean modular provider architecture in `custom_components/solmate/providers/`.
+- **Dynamic Config Flow**: Customized setup forms and validation for each inverter provider.
+
+---
+
 ## [1.1.3] - 2026-09-23
 
 ### 🔧 Fixes & Improvements

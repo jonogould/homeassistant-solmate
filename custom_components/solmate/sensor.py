@@ -21,8 +21,14 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
+    CONF_ACCOUNT,
+    CONF_APP_ID,
+    CONF_DEVICE_SN,
     CONF_EMAIL,
+    CONF_GATEWAY_IP,
     CONF_PROVIDER,
+    CONF_SITE_ID,
+    CONF_USERNAME,
     DOMAIN,
     NAME,
     PROVIDER_NAMES,
@@ -227,14 +233,29 @@ class SolmateSensor(CoordinatorEntity[SolmateDataUpdateCoordinator], SensorEntit
         self.entity_description = description
         self._entry = entry
 
-        email = entry.data[CONF_EMAIL]
         provider = entry.data.get(CONF_PROVIDER, "sunsynk")
         provider_name = PROVIDER_NAMES.get(provider, provider)
 
-        self._attr_unique_id = f"solmate_{email.lower()}_{description.key}"
+        ident = (
+            entry.data.get(CONF_EMAIL)
+            or entry.data.get(CONF_SITE_ID)
+            or entry.data.get(CONF_GATEWAY_IP)
+            or entry.data.get(CONF_DEVICE_SN)
+            or entry.data.get(CONF_ACCOUNT)
+            or entry.data.get(CONF_USERNAME)
+            or entry.data.get(CONF_APP_ID)
+            or entry.entry_id
+        )
+
+        title = entry.title or f"Solmate ({ident})"
+        clean_ident = (
+            str(ident).lower().replace("http://", "").replace("https://", "").strip("/")
+        )
+
+        self._attr_unique_id = f"solmate_{clean_ident}_{description.key}"
         self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, email.lower())},
-            name=f"Solmate ({email})",
+            identifiers={(DOMAIN, clean_ident)},
+            name=title,
             manufacturer=f"Solmate / {provider_name}",
             model="Solar & Battery Companion Hub",
             sw_version=VERSION,
